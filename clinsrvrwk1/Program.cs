@@ -7,7 +7,7 @@ namespace clinsrvrwk1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Program was called with what ");
+            Console.WriteLine("Program was called with somethingg");
             for(int i=0; i < args.Length ; i++)
             {
                 Console.WriteLine(args[i]);
