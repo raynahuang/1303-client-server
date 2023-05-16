@@ -1,24 +1,27 @@
-﻿namespace assiginment2
+﻿using System;
+
+namespace Assignment2
 {
     public class User
     {
         public int ID;
         public string Name;
     }
+
     internal class Program
     {
-        static User[] users = new User[100];
-        static int userCount = 0;
+        private static User[] users = new User[100];
+        private static int userCount = 0;
 
-        static void Main()
+        private static void Main()
         {
-            int choice;
+            int menu;
             do
             {
-                choice = DisplayMenuAndGetChoice();
+                menu = menuOption();
                 Console.WriteLine();
 
-                switch (choice)
+                switch (menu)
                 {
                     case 1:
                         AddUser();
@@ -44,12 +47,12 @@
                 }
 
                 Console.WriteLine();
-            } while (choice != 0);
+            } while (menu != 0);
 
             Console.ReadLine();
         }
 
-        static int DisplayMenuAndGetChoice()
+        private static int menuOption()
         {
             Console.WriteLine("Menu Options:");
             Console.WriteLine("1 - Add user");
@@ -57,18 +60,17 @@
             Console.WriteLine("3 - Show user by Name");
             Console.WriteLine("4 - Delete user by ID");
             Console.WriteLine("5 - Delete user by Name");
-            Console.WriteLine("6 - List all users Name (enter empty input to list all users)");
-            
+            Console.WriteLine("6 - List all users");
 
             Console.Write("Enter your choice: ");
-            if (int.TryParse(Console.ReadLine(), out int choice))
+            if (int.TryParse(Console.ReadLine(), out int menu))
             {
-                return choice;
+                return menu;
             }
             return -1; // Invalid choice
         }
 
-        static void AddUser()
+        private static void AddUser()
         {
             if (userCount >= users.Length)
             {
@@ -98,12 +100,21 @@
             Console.WriteLine("User added successfully.");
         }
 
-        static void ShowUserByID()
+        private static void ShowUserByID()
         {
             Console.Write("Enter user ID: ");
             if (int.TryParse(Console.ReadLine(), out int id))
             {
-                User user = Array.Find(users, u => u?.ID == id);
+                User user = null;
+                foreach (User u in users)
+                {
+                    if (u != null && u.ID == id)
+                    {
+                        user = u;
+                        break;
+                    }
+                }
+
                 if (user != null)
                 {
                     Console.WriteLine($"User ID: {user.ID}, Name: {user.Name}");
@@ -119,12 +130,22 @@
             }
         }
 
-        static void ShowUserByName()
+
+        private static void ShowUserByName()
         {
             Console.Write("Enter user name: ");
             string name = Console.ReadLine();
 
-            User user = Array.Find(users, u => u?.Name == name);
+            User user = null;
+            foreach (User u in users)
+            {
+                if (u != null && u.Name == name)
+                {
+                    user = u;
+                    break;
+                }
+            }
+
             if (user != null)
             {
                 Console.WriteLine($"User ID: {user.ID}, Name: {user.Name}");
@@ -135,7 +156,8 @@
             }
         }
 
-        static void DeleteUserByID()
+
+        private static void DeleteUserByID()
         {
             Console.Write("Enter user ID: ");
             if (int.TryParse(Console.ReadLine(), out int id))
@@ -175,7 +197,7 @@
             }
         }
 
-        static void DeleteUserByName()
+        private static void DeleteUserByName()
         {
             Console.Write("Enter user name: ");
             string name = Console.ReadLine();
@@ -197,7 +219,7 @@
             }
         }
 
-        static void ListAllUserNames()
+        private static void ListAllUserNames()
         {
             Console.WriteLine("User Names:");
             for (int i = 0; i < userCount; i++)
@@ -206,6 +228,5 @@
             }
         }
     }
-
-
 }
+
