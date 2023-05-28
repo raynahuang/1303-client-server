@@ -32,7 +32,7 @@ namespace assignment3
 
 
             bus bus1 = new bus("Bus-Hondd", "Made in CA", "GJE 225", "Large Body Buses", "Blue", 8, "VB 1255", 40000,
-            "VIN457774412", "UYY899", 5, 0, 170);
+            "VIN457774412", "UYY899", 5, 0, 180);
 
             Console.WriteLine("Bus introduciton");
             bus1.displayInfo();
