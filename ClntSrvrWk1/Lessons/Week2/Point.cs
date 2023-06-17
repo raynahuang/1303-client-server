@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace clinsrvrwk1
+namespace ClntSrvrWk1.Lessons.Week2
 {
     public class Point
     {
         public int x;
-        public int y;   
+        public int y;
     }
 }
