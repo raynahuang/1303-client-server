@@ -1,0 +1,167 @@
+1.C
+2.B
+3.C
+4.C
+5.B
+6.D
+7.B
+8.D
+
+9. Programming:
+
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        try
+        {
+            firstFunction("Hello, World!"); // Calling the first function
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Exception caught: " + ex.Message);
+        }
+    }
+
+    static void firstFunction(string parameter)
+    {
+        if (string.IsNullOrEmpty(parameter)) // Checking if the parameter is null or empty
+        {
+            throw new ArgumentException("Parameter cannot be null or empty.");
+        }
+
+        secondFunction(parameter); // Calling the second function
+    }
+
+    static void secondFunction(string text)
+    {
+        Console.WriteLine("Text received: " + text);
+    }
+}
+
+
+10. Programming:
+
+using System;
+
+abstract class Vehicle
+{
+    public abstract int GetNumberOfWheels();
+    public abstract int GetMaxSpeed();
+}
+
+class Motorcycle : Vehicle
+{
+    public override int GetNumberOfWheels()
+    {
+        return 2;
+    }
+
+    public override int GetMaxSpeed()
+    {
+        return 200; // Assuming a maximum speed of 200 km/h for a motorcycle
+    }
+}
+
+class Car : Vehicle
+{
+    public override int GetNumberOfWheels()
+    {
+        return 4;
+    }
+
+    public override int GetMaxSpeed()
+    {
+        return 250; // Assuming a maximum speed of 250 km/h for a car
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Motorcycle motorcycle = new Motorcycle();
+        Car car = new Car();
+
+
+        Console.WriteLine("Number of Wheels: " + motorcycle.GetNumberOfWheels());
+        Console.WriteLine("Max Speed: " + motorcycle.GetMaxSpeed());
+      
+        Console.WriteLine("Number of Wheels: " + car.GetNumberOfWheels());
+        Console.WriteLine("Max Speed: " + car.GetMaxSpeed());
+    }
+}
+
+11. programming:
+using System;
+
+class Stack<T>
+{
+    private const int DefaultCapacity = 4;
+    private T[] stackArray;
+    private int topIndex;
+
+    public Stack()
+    {
+        stackArray = new T[DefaultCapacity];
+        topIndex = -1;
+    }
+
+    public void Push(T item)
+    {
+        if (topIndex == stackArray.Length - 1)
+        {
+            ResizeArray();
+        }
+
+        stackArray[++topIndex] = item;
+    }
+
+    public T Pop()
+    {
+        if (topIndex == -1)
+        {
+            throw new InvalidOperationException("Stack is empty.");
+        }
+
+        return stackArray[topIndex--];
+    }
+
+    public T Peek()
+    {
+        if (topIndex == -1)
+        {
+            throw new InvalidOperationException("Stack is empty.");
+        }
+
+        return stackArray[topIndex];
+    }
+
+    private void ResizeArray()
+    {
+        int newCapacity = stackArray.Length * 2;
+        T[] newArray = new T[newCapacity];
+        Array.Copy(stackArray, newArray, stackArray.Length);
+        stackArray = newArray;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Stack<int> myStack = new Stack<int>();
+
+        myStack.Push(40);
+        myStack.Push(50);
+        myStack.Push(60);
+
+        Console.WriteLine("Peek: " + myStack.Peek());
+        Console.WriteLine("Pop: " + myStack.Pop());
+        Console.WriteLine("Peek: " + myStack.Peek());
+    }
+}
+
+
