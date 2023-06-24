@@ -14,7 +14,7 @@
 
             list.Reverse();
 
-            Console.WriteLine("Reversed List:");
+            Console.WriteLine("Result List:");
             list.Display();
         }
     }
