@@ -174,7 +174,13 @@ namespace lab5
 
             while (current != null)
             {
-                Console.Write($"{current.Data} --> ");
+                Console.Write($"{current.Data}");
+
+                if (current.Next != null)
+                {
+                    Console.Write(" ---> ");
+                }
+
                 current = current.Next;
             }
 
