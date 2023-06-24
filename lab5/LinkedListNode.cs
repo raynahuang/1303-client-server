@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace assignment7
+namespace lab5
 {
     public class LinkedListNode<T>
     {
