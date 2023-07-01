@@ -82,6 +82,7 @@ namespace GenericStack
             catch (Exception ex)
             {
                 Console.WriteLine("Exception: " + ex.Message);
+
             }
         }
     }
