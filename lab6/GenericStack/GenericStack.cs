@@ -7,9 +7,8 @@ namespace GenericStack
     public class GenericStack<T>
     {
         private readonly int _size;
-        private int _position;
+        private volatile int _position;
         private readonly T[] _data;
-        private readonly object _syncObject = new object();
 
         public GenericStack(int size)
         {
@@ -23,24 +22,26 @@ namespace GenericStack
 
         public void Push(T item)
         {
-            lock (_syncObject)
+            int newPosition = Interlocked.Increment(ref _position);
+            if (newPosition >= _size)
             {
-                if (_position == _size - 1)
-                    throw new InvalidOperationException("Stack is full.");
-
-                _data[++_position] = item;
+                Interlocked.Decrement(ref _position);
+                throw new InvalidOperationException("Stack is full.");
             }
+
+            _data[newPosition] = item;
         }
 
         public T Pop()
         {
-            lock (_syncObject)
+            int currentPosition = Interlocked.Decrement(ref _position);
+            if (currentPosition < 0)
             {
-                if (_position == -1)
-                    throw new InvalidOperationException("Stack is empty.");
-
-                return _data[_position--];
+                Interlocked.Increment(ref _position);
+                throw new InvalidOperationException("Stack is empty.");
             }
+
+            return _data[currentPosition + 1];
         }
     }
 
@@ -82,7 +83,6 @@ namespace GenericStack
             catch (Exception ex)
             {
                 Console.WriteLine("Exception: " + ex.Message);
-
             }
         }
     }
