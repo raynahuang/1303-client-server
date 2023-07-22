@@ -16,7 +16,7 @@ namespace Abstractions
 
     public class ContactDetail
     {
-        public string Type { get; set; } // e.g., "work", "home", "department", etc.
+        public string Title { get; set; } // Title of the contact detail (e.g., "work", "home", "department", etc.)
         public string Value { get; set; } // Phone number or email address
     }
 
