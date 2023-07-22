@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions", "..\Abstractions\Abstractions.csproj", "{F55CAAC9-C20F-4DED-903E-48237C6325B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstractions", "..\Abstractions\Abstractions.csproj", "{F55CAAC9-C20F-4DED-903E-48237C6325B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManagerConsole", "..\ContactManagerConsole\ContactManagerConsole.csproj", "{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactManagerConsole", "..\ContactManagerConsole\ContactManagerConsole.csproj", "{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactStorageDiskService", "..\ContactStorageDiskService\ContactStorageDiskService.csproj", "{04F6E43D-CC1D-4670-86FE-E65353EFEF77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactStore", "..\ContactStore\ContactStore.csproj", "{5F870805-BEE3-42E4-B2B8-DF8761F0147B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactStore", "..\ContactStore\ContactStore.csproj", "{5F870805-BEE3-42E4-B2B8-DF8761F0147B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\Models\Models.csproj", "{4A763F22-731C-49C8-A366-1632F8C1CF16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "..\Models\Models.csproj", "{4A763F22-731C-49C8-A366-1632F8C1CF16}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{FFA373D3-4E31-4E46-9BCC-B12630A8C187}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "..\Test\Test.csproj", "{FFA373D3-4E31-4E46-9BCC-B12630A8C187}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04F6E43D-CC1D-4670-86FE-E65353EFEF77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04F6E43D-CC1D-4670-86FE-E65353EFEF77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04F6E43D-CC1D-4670-86FE-E65353EFEF77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04F6E43D-CC1D-4670-86FE-E65353EFEF77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F870805-BEE3-42E4-B2B8-DF8761F0147B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F870805-BEE3-42E4-B2B8-DF8761F0147B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F870805-BEE3-42E4-B2B8-DF8761F0147B}.Release|Any CPU.ActiveCfg = Release|Any CPU
