@@ -6,7 +6,27 @@ using System.Threading.Tasks;
 
 namespace Abstractions
 {
-    internal class Abstractions
+    public interface IContact
     {
+        string Id { get; }
+        string Name { get; set; }
+        string Address { get; set; }
+        List<ContactDetail> ContactDetails { get; set; }
+    }
+
+    public class ContactDetail
+    {
+        public string Type { get; set; } // e.g., "work", "home", "department", etc.
+        public string Value { get; set; } // Phone number or email address
+    }
+
+    public interface ICompany : IContact
+    {
+        List<IIndividual> Employees { get; set; }
+    }
+
+    public interface IIndividual : IContact
+    {
+        ICompany Employer { get; set; }
     }
 }
