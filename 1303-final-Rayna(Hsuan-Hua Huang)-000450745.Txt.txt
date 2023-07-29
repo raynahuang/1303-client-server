@@ -1,4 +1,384 @@
-1.
-2.
-3.
-4.
+1. DNS stands for Domain Name System. It translates human-readable domain names to IP addresses.
+
+2. The DNS resolver converts domain names to IP addresses by querying Root DNS, TLD, and SLD servers.
+
+3. A thread is a sequence of instructions that can be executed independently by a CPU.
+
+4. A process is an instance of a program running on a computer, containing code and resources.
+
+5. In a Client/Server architecture, a Client requests services or information from a Server.
+
+6. In a Client/Server architecture, a Server provides services or information to Clients upon request.
+
+7. C
+8. B
+9. A
+10. B
+11. C
+12. B
+13. D
+14. B
+15. C
+16. C
+17. A
+18.
+public int AddResults()
+{
+    var result1Task = GetResult1Async();
+    var result2Task = GetResult2Async();
+
+    // Synchronously wait for the task results using the Result property.
+    int result1 = result1Task.Result;
+    int result2 = result2Task.Result;
+
+    return result1 + result2;
+}
+
+19. A
+20. AC
+21. C
+22. C
+
+23.
+using System;
+using System.Threading;
+
+public class ConcurrentQueue<T>
+{
+    private T[] queue;
+    private int maxSize;
+    private int head;
+    private int tail;
+    private int count;
+    private object syncRoot = new object();
+
+    public ConcurrentQueue(int maxSize)
+    {
+        if (maxSize <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(maxSize), "Maximum size must be greater than zero.");
+        }
+
+        this.maxSize = maxSize;
+        queue = new T[maxSize];
+        head = 0;
+        tail = -1;
+        count = 0;
+    }
+
+    public void Enqueue(T item)
+    {
+        lock (syncRoot)
+        {
+            if (count >= maxSize)
+            {
+                throw new InvalidOperationException("Queue is full.");
+            }
+
+            tail = (tail + 1) % maxSize;
+            queue[tail] = item;
+            count++;
+            Monitor.Pulse(syncRoot);
+        }
+    }
+
+    public T Dequeue()
+    {
+        lock (syncRoot)
+        {
+            while (count <= 0)
+            {
+                Monitor.Wait(syncRoot);
+            }
+
+            T item = queue[head];
+            queue[head] = default(T);
+            head = (head + 1) % maxSize;
+            count--;
+            Monitor.Pulse(syncRoot);
+            return item;
+        }
+    }
+
+    public int GetCurrentLength()
+    {
+        lock (syncRoot)
+        {
+            return count;
+        }
+    }
+
+    public T Peek()
+    {
+        lock (syncRoot)
+        {
+            while (count <= 0)
+            {
+                Monitor.Wait(syncRoot);
+            }
+
+            return queue[head];
+        }
+    }
+}
+
+
+24.
+using System;
+
+// Base abstract class for all weapons
+public abstract class Weapon
+{
+    public string Name { get; protected set; }
+    public double BaseDamage { get; protected set; }
+    public int PlayerLevel { get; set; }
+    public int DiceRoll { get; set; }
+
+    // Method to calculate the damage of the weapon
+    public virtual double CalculateDamage()
+    {
+        double damageIncrease = GetDamageIncreasePercentage();
+        double diceRollIncrease = GetDiceRollIncreasePercentage();
+
+        double totalDamage = BaseDamage * (1 + damageIncrease / 100) * (1 + diceRollIncrease / 100);
+
+        return Math.Round(totalDamage, 2);
+    }
+
+    // Abstract method to get the damage increase percentage based on the player's level
+    protected abstract double GetDamageIncreasePercentage();
+
+    // Method to get the dice roll increase percentage based on the dice roll value
+    protected double GetDiceRollIncreasePercentage()
+    {
+        switch (DiceRoll)
+        {
+            case 1: return 0;
+            case 2: return 20;
+            case 3: return 30;
+            case 4: return 40;
+            case 5: return 50;
+            case 6: return 60;
+            default: return 0;
+        }
+    }
+}
+
+// Derived classes for each weapon type
+public class Sword : Weapon
+{
+    public Sword()
+    {
+        Name = "Sword";
+        BaseDamage = 3;
+    }
+
+    protected override double GetDamageIncreasePercentage()
+    {
+        switch (PlayerLevel)
+        {
+            case 1: return 0;
+            case 2: return 40;
+            case 3: return 60;
+            case 4: return 80;
+            case 5: return 100;
+            default: return 0;
+        }
+    }
+}
+
+public class Arrow : Weapon
+{
+    public Arrow()
+    {
+        Name = "Arrow";
+        BaseDamage = 2;
+    }
+
+    protected override double GetDamageIncreasePercentage()
+    {
+        return 0;
+    }
+}
+
+public class Crossbow : Weapon
+{
+    public Crossbow()
+    {
+        Name = "Crossbow";
+        BaseDamage = 2.5;
+    }
+
+    protected override double GetDamageIncreasePercentage()
+    {
+        return 0;
+    }
+}
+
+public class Whip : Weapon
+{
+    public Whip()
+    {
+        Name = "Whip";
+        BaseDamage = 1.5;
+    }
+
+    protected override double GetDamageIncreasePercentage()
+    {
+        return 0;
+    }
+}
+
+public class Dagger : Weapon
+{
+    public Dagger()
+    {
+        Name = "Dagger";
+        BaseDamage = 2;
+    }
+
+    protected override double GetDamageIncreasePercentage()
+    {
+        switch (PlayerLevel)
+        {
+            case 1: return 0;
+            case 2: return 40;
+            case 3: return 60;
+            case 4: return 80;
+            case 5: return 100;
+            default: return 0;
+        }
+    }
+}
+
+public class Staff : Weapon
+{
+    public Staff()
+    {
+        Name = "Staff";
+        BaseDamage = 1;
+    }
+
+    protected override double GetDamageIncreasePercentage()
+    {
+        switch (PlayerLevel)
+        {
+            case 1: return 0;
+            case 2: return 40;
+            case 3: return 60;
+            case 4: return 80;
+            case 5: return 100;
+            default: return 0;
+        }
+    }
+}
+
+
+25.
+// Assume you have the following utility interface, class, and enum to access the file system.
+public interface IFileManager
+{
+    List<File> GetFolderContect(string path);
+    void Open(string filename);
+    string ReadAll();
+    string Read(int length);
+    int Write(string content);
+    void Close();
+}
+
+public class File
+{
+    public FileSystemObjectType FileSystemObjectType { get; }
+    public string Filename { get; }
+    public string Path { get; }
+}
+
+public enum FileSystemObjectType
+{
+    File,
+    Folder
+}
+
+// Player Score class
+public class PlayerScore
+{
+    public string Username { get; set; }
+    public string GameId { get; set; }
+    public DateTime ScoreDateTime { get; set; }
+    public double ScoreValue { get; set; }
+
+    public PlayerScore(string username, string gameId, DateTime scoreDateTime, double scoreValue)
+    {
+        Username = username;
+        GameId = gameId;
+        ScoreDateTime = scoreDateTime;
+        ScoreValue = scoreValue;
+    }
+}
+
+// Score Manager class to handle saving and loading Player Scores
+public class ScoreManager
+{
+    private IFileManager fileManager;
+    private string scoresFilePath;
+
+    public ScoreManager(IFileManager fileManager, string scoresFilePath)
+    {
+        this.fileManager = fileManager;
+        this.scoresFilePath = scoresFilePath;
+    }
+
+    // Method to save Player Scores to a flat text file
+    public void SaveScores(List<PlayerScore> playerScores)
+    {
+        try
+        {
+            // Convert player scores to text format (e.g., CSV) for saving
+            List<string> lines = playerScores.Select(score => $"{score.Username},{score.GameId},{score.ScoreDateTime},{score.ScoreValue}").ToList();
+            string content = string.Join(Environment.NewLine, lines);
+
+            // Open the file and write the content
+            fileManager.Open(scoresFilePath);
+            fileManager.Write(content);
+            fileManager.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error while saving scores: {ex.Message}");
+        }
+    }
+
+    // Method to load Player Scores from a flat text file
+    public List<PlayerScore> LoadScores()
+    {
+        List<PlayerScore> playerScores = new List<PlayerScore>();
+
+        try
+        {
+            // Read all content from the file
+            fileManager.Open(scoresFilePath);
+            string content = fileManager.ReadAll();
+            fileManager.Close();
+
+            // Split content into lines and parse player scores
+            string[] lines = content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string line in lines)
+            {
+                string[] fields = line.Split(',');
+                if (fields.Length == 4 &&
+                    DateTime.TryParse(fields[2], out DateTime scoreDateTime) &&
+                    double.TryParse(fields[3], out double scoreValue))
+                {
+                    PlayerScore playerScore = new PlayerScore(fields[0], fields[1], scoreDateTime, scoreValue);
+                    playerScores.Add(playerScore);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error while loading scores: {ex.Message}");
+        }
+
+        return playerScores;
+    }
+}
