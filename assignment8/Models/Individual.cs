@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Abstractions;
 
 namespace Models
 {
-    public class Individual : IIndividual
+    public class Individual : Iindividual
     {
-        public string Id { get; set; } // You can generate a unique ID for each individual, e.g., using Guid.NewGuid().ToString()
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public List<ContactDetail> ContactDetails { get; set; } // Include ContactDetails here
+        public List<ContactDetail> ContactDetails { get; set; }
         public List<ContactDetail> PhoneNumbers { get; set; }
         public List<ContactDetail> Emails { get; set; }
-        public ICompany Employer { get; set; }
+        public Icompany Employer { get; set; }
 
         public Individual()
         {

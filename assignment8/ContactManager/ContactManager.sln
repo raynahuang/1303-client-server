@@ -5,8 +5,6 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstractions", "..\Abstractions\Abstractions.csproj", "{F55CAAC9-C20F-4DED-903E-48237C6325B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactManagerConsole", "..\ContactManagerConsole\ContactManagerConsole.csproj", "{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactStore", "..\ContactStore\ContactStore.csproj", "{5F870805-BEE3-42E4-B2B8-DF8761F0147B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\Models\Models.csproj", "{4A763F22-731C-49C8-A366-1632F8C1CF16}"
@@ -23,10 +21,6 @@ Global
 		{F55CAAC9-C20F-4DED-903E-48237C6325B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F55CAAC9-C20F-4DED-903E-48237C6325B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F55CAAC9-C20F-4DED-903E-48237C6325B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39938EBF-3D19-4F68-87EF-A7B16C9DDC15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F870805-BEE3-42E4-B2B8-DF8761F0147B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F870805-BEE3-42E4-B2B8-DF8761F0147B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F870805-BEE3-42E4-B2B8-DF8761F0147B}.Release|Any CPU.ActiveCfg = Release|Any CPU
