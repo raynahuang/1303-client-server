@@ -78,12 +78,12 @@ namespace ContactStore
             individuals.Remove(individual);
         }
 
-        public List<Icompany> GetAllCompanies()
+        public List<Abstractions.Icompany> GetAllCompanies()
         {
             return companies;
         }
 
-        public List<Iindividual> GetAllIndividuals()
+        public List<Abstractions.Iindividual> GetAllIndividuals()
         {
             return individuals;
         }

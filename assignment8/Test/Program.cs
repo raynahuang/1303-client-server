@@ -17,15 +17,15 @@ namespace Test
             Icompany company1 = new Company
             {
                 Id = "C001",
-                Name = "ABC Corporation",
-                Address = "123 Main Street",
+                Name = "APPE Corporation",
+                Address = "1233 Main Street",
             };
 
             Icompany company2 = new Company
             {
                 Id = "C002",
-                Name = "XYZ Inc.",
-                Address = "456 Broad Avenue",
+                Name = "XEZ Inc.",
+                Address = "4156 Broad Avenue",
             };
 
             storage.Add(company1);
@@ -34,23 +34,18 @@ namespace Test
             Icompany retrievedCompany = storage.GetCompany("C001");
             Console.WriteLine("Retrieved Company: " + retrievedCompany.Name);
 
-            company1.Name = "Updated Company";
-            storage.Update(company1);
-
-            storage.Delete(company2);
-
             // Test CRUD operations for individuals
             Iindividual individual1 = new Individual
             {
                 Id = "I001",
-                Name = "John Doe",
+                Name = "Bobby Ken",
                 Address = "789 Oak Lane",
             };
 
             Iindividual individual2 = new Individual
             {
                 Id = "I002",
-                Name = "Jane Smith",
+                Name = "Ellen Fmith",
                 Address = "987 Elm Street",
             };
 
@@ -60,19 +55,13 @@ namespace Test
             Iindividual retrievedIndividual = storage.GetIndividual("I002");
             Console.WriteLine("Retrieved Individual: " + retrievedIndividual.Name);
 
-            individual1.Name = "Updated Individual";
-            storage.Update(individual1);
-
-            storage.Delete(individual2);
-
-            // List all companies
+            // List all entries in the storage
             Console.WriteLine("\nList of Companies:");
             foreach (var company in storage.GetAllCompanies())
             {
                 Console.WriteLine(company.Name);
             }
 
-            // List all individuals
             Console.WriteLine("\nList of Individuals:");
             foreach (var individual in storage.GetAllIndividuals())
             {
