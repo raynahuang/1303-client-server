@@ -7,7 +7,7 @@ using Abstractions;
 
 namespace ContactStore
 {
-    public class Storage : Istorage
+   public class Storage : Istorage
     {
         private List<Icompany> companies;
         private List<Iindividual> individuals;
@@ -33,7 +33,7 @@ namespace ContactStore
 
         public Icompany GetCompany(string companyId)
         {
-            return companies.Find(c => c.Id == companyId);
+            return companies.FirstOrDefault(c => c.Id == companyId);
         }
 
         public void Update(Icompany company)
@@ -48,6 +48,11 @@ namespace ContactStore
         public void Delete(Icompany company)
         {
             companies.Remove(company);
+            // Adjust size when deleting elements
+            if (companies.Count == size / (growthFactor * growthFactor))
+            {
+                size /= growthFactor;
+            }
         }
 
         public void Add(Iindividual individual)
@@ -61,7 +66,7 @@ namespace ContactStore
 
         public Iindividual GetIndividual(string individualId)
         {
-            return individuals.Find(i => i.Id == individualId);
+            return individuals.FirstOrDefault(i => i.Id == individualId);
         }
 
         public void Update(Iindividual individual)
@@ -76,14 +81,19 @@ namespace ContactStore
         public void Delete(Iindividual individual)
         {
             individuals.Remove(individual);
+            // Adjust size when deleting elements
+            if (individuals.Count == size / (growthFactor * growthFactor))
+            {
+                size /= growthFactor;
+            }
         }
 
-        public List<Abstractions.Icompany> GetAllCompanies()
+        public List<Icompany> GetAllCompanies()
         {
             return companies;
         }
 
-        public List<Abstractions.Iindividual> GetAllIndividuals()
+        public List<Iindividual> GetAllIndividuals()
         {
             return individuals;
         }

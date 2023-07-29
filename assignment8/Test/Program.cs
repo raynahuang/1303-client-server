@@ -17,35 +17,41 @@ namespace Test
             Icompany company1 = new Company
             {
                 Id = "C001",
-                Name = "APPE Corporation",
-                Address = "1233 Main Street",
+                Name = "ABC Corporation",
+                Address = "123 Main Street",
             };
 
             Icompany company2 = new Company
             {
                 Id = "C002",
-                Name = "XEZ Inc.",
-                Address = "4156 Broad Avenue",
+                Name = "XYZ Inc.",
+                Address = "456 Broad Avenue",
             };
 
             storage.Add(company1);
             storage.Add(company2);
 
             Icompany retrievedCompany = storage.GetCompany("C001");
-            Console.WriteLine("Retrieved Company: " + retrievedCompany.Name);
+            if (retrievedCompany != null)
+            {
+                Console.WriteLine("Retrieved Company: " + retrievedCompany.Name);
+            }
+
+            company1.Name = "Updated Company";
+            storage.Update(company1);
 
             // Test CRUD operations for individuals
             Iindividual individual1 = new Individual
             {
                 Id = "I001",
-                Name = "Bobby Ken",
+                Name = "John Doe",
                 Address = "789 Oak Lane",
             };
 
             Iindividual individual2 = new Individual
             {
                 Id = "I002",
-                Name = "Ellen Fmith",
+                Name = "Jane Smith",
                 Address = "987 Elm Street",
             };
 
@@ -53,7 +59,13 @@ namespace Test
             storage.Add(individual2);
 
             Iindividual retrievedIndividual = storage.GetIndividual("I002");
-            Console.WriteLine("Retrieved Individual: " + retrievedIndividual.Name);
+            if (retrievedIndividual != null)
+            {
+                Console.WriteLine("Retrieved Individual: " + retrievedIndividual.Name);
+            }
+
+            individual1.Name = "Updated Individual";
+            storage.Update(individual1);
 
             // List all entries in the storage
             Console.WriteLine("\nList of Companies:");
@@ -67,6 +79,10 @@ namespace Test
             {
                 Console.WriteLine(individual.Name);
             }
+
+            // Deleting company2 and individual2
+            storage.Delete(company2);
+            storage.Delete(individual2);
         }
     }
 }

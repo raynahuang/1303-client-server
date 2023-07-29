@@ -20,7 +20,7 @@ namespace Abstractions
         void Update(Iindividual individual);
         void Delete(Iindividual individual);
 
-        List<Icompany> GetAllCompanies();
-        List<Iindividual> GetAllIndividuals();
+        List<Icompany> GetAllCompanies(); // New method to get all companies
+        List<Iindividual> GetAllIndividuals(); // New method to get all individuals
     }
 }

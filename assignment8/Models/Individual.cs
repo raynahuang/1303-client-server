@@ -20,9 +20,9 @@ namespace Models
 
         public Individual()
         {
-            ContactDetails = new List<ContactDetail>();
-            PhoneNumbers = new List<ContactDetail>();
-            Emails = new List<ContactDetail>();
+            ContactDetails = new List<ContactDetail>(); // Add this line to initialize the list
+            PhoneNumbers = new List<ContactDetail>(); // Add this line to initialize the list
+            Emails = new List<ContactDetail>(); // Add this line to initialize the list
         }
     }
 }
